@@ -1,13 +1,25 @@
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose");
 const { router } = require("./routes/products_routes.js");
+const { users_routes } = require("./routes/users_routes.js");
+require("dotenv").config();
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/users", () => {});
+const DB = process.env.DB;
+mongoose.connect(DB)
+  .then(() => {
+    console.log("connected to db");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+app.use("/api/users", users_routes);
 
 app.use("/api/products", router);
 
