@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const { router } = require("./routes/products_routes.js");
+const { products_router } = require("./routes/products_routes.js");
 const { users_routes } = require("./routes/users_routes.js");
 require("dotenv").config();
 
@@ -21,7 +21,7 @@ mongoose.connect(DB)
 
 app.use("/api/users", users_routes);
 
-app.use("/api/products", router);
+app.use("/api/products", products_router);
 
 app.use((req, res) => {
   return res.status(500).json({
