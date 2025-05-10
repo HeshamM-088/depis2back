@@ -29,8 +29,8 @@ app.use((req, res) => {
   });
 });
 
-// app.listen(3000, () => {
-//   console.log("run");
-// });
+app.listen(3000, () => {
+  console.log("run");
+});
 
 module.exports = app;
